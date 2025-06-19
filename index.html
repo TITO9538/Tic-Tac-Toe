@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./main.js" defer type="module"></script>
+    <title>Tic Tac Toe</title>
+  </head>
+  <body class="h-screen bg-slate-900">
+    <!-- Cursor con luz -->
+    <div id="glow-cursor"></div>
+    <main class="w-full h-full">
+      <!-- INICIO -->
+      <section id="mainMenu" class="w-full h-full flex flex-col items-center justify-center">
+        <!-- titulo -->
+        <div
+          class="flex flex-col items-center justify-center m-5 mt-1 font-sans font-bold text-white">
+          <h1
+            class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-emerald-500 from-purple-500 drop-shadow-[0_0_10px_blue]">
+            TIC TAC TOE
+          </h1>
+          <div class="flex items-center justify-center gap-4 m-2">
+            <h2
+              class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from- bg-fuchsia-700 to-purple-500 drop-shadow-[0_0_10px_purple]">
+              X
+            </h2>
+            <h2 class="text-slate-400">VS</h2>
+            <h2
+              class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-lime-500 to-emerald-500 drop-shadow-[0_0_10px_green]">
+              O
+            </h2>
+          </div>
+        </div>
+        <!-- Caja de seleccion de X-O -->
+        <div id="selectPlayerContainer"
+          class="w-70 h-45 flex flex-col items-center justify-evenly rounded-xl shadow-xl/50 bg-slate-700 font-sans font-bold text-white z-10">
+          <h3 class="uppercase text-slate-300 text-xl">Select Player</h3>
+          <div
+            class="w-[80%] h-[50%] bg-slate-900 rounded-md grid grid-cols-2 grid-rows-1 place-content-center place-items-center">
+            <button id="selectX"
+              class="w-[80%] h-[80%] ml-2 rounded-sm bg-slate-700 text-slate-900 text-center flex items-center justify-center text-5xl font-extrabold hover:bg-slate-600 focus:bg-slate-800">
+              X
+            </button>
+            <button id="selectO"
+              class="w-[80%] h-[80%] mr-2 rounded-sm bg-slate-700 text-slate-900 text-center flex items-center justify-center text-5xl font-extrabold hover:bg-slate-600 focus:bg-slate-800">
+              O
+            </button>
+          </div>
+          <h4 class="text-slate-500 text-sm m-2">Remember that with Bot, X goes first</h4>
+        </div>
+        <!-- Botones de seleccion de jusgo -->
+        <div class="flex flex-col items-center justify-center">
+          <button id="newGameBot"
+            class="w-70 h-15 mt-10 flex flex-col items-center justify-center rounded-xl bg-gradient-to-r from-violet-700 via-purple-700 to-fuchsia-700 hover:text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 focus:outline-none font-sans font-bold text-slate-300 z-10">
+            New Game (vs bot)
+          </button>
+          <button id="twoPlayerGame"
+            class="w-70 h-15 mt-5 flex flex-col items-center justify-center rounded-xl bg-gradient-to-r from-cyan-700 via-sky-700 to-blue-700 hover:text-white shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 focus:outline-none font-sans font-bold text-slate-300 z-10">
+            2 Player Game
+          </button>
+        </div>
+      </section>
+      <!-- GAME -->
+      <section id="game" class="hidden w-full h-full flex-col items-center justify-center">
+        <!-- Head -->
+        <div class="w-100 flex items-center justify-between z-10">
+          <h2
+            class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-emerald-500 from-purple-500 drop-shadow-[0_0_10px_indigo]">
+            X O
+          </h2>
+          <div
+            class="grid grid-cols-3 grid-rows-1 place-content-center place-items-center bg-slate-700 w-30 h-10 rounded-md font-bold text-slate-200 shadow-xl/40">
+            <div
+              id="statusTurn"
+              class="w-[85%] h-[85%] flex items-center justify-center bg-slate-900 rounded-sm">
+              X
+            </div>
+            <h2 class="col-span-2">Turn</h2>
+          </div>
+          <div
+            id="restart"
+            class="flex items-center justify-center bg-slate-700 size-10 rounded-md shadow-xl/40">
+            <svg
+              class="w-6 h-6 text-slate-200"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 9h13a5 5 0 0 1 0 10H7M3 9l4-4M3 9l4 4" />
+            </svg>
+          </div>
+        </div>
+        <!-- Table -->
+        <div
+          id="cellsContainer"
+          class="w-100 h-100 grid grid-cols-3 grid-rows-3 place-items-center place-content-center m-3 mt-5 p-2 border rounded-md border-slate-800 bg-slate-800 shadow-xl/50 z-10">
+          <div
+            data-celdas="0"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="1"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="2"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="3"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="4"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="5"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="6"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="7"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+
+          <div
+            data-celdas="8"
+            class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
+        </div>
+        <!-- Takes -->
+        <div class="w-100 flex items-center justify-between text-slate-800">
+          <div
+            class="w-30 h-15 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-600 font-sans z-10">
+            <h5 class="mb-[-5px] text-slate-700">Player X</h5>
+            <h5 id="playerX" class="font-extrabold text-2xl">0</h5>
+          </div>
+          <div
+            class="w-30 h-15 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-slate-400 font-sans z-10">
+            <h5 class="mb-[-5px] text-slate-700">TIES</h5>
+            <h5 id="ties" class="font-extrabold text-2xl">0</h5>
+          </div>
+          <div
+            class="w-30 h-15 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 font-sans z-10">
+            <h5 class="mb-[-5px] text-slate-700">Player O</h5>
+            <h5 id="playerO" class="font-extrabold text-2xl">0</h5>
+          </div>
+        </div>
+        
+      </section>
+      <!-- WINNER -->
+      <!-- X TAKES THE ROUND -->
+      <section id="xTakes" class="hidden fixed inset-0 z-50 items-center justify-center">
+        <!-- Fondo oscuro -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <!-- Contenido del modal -->
+        <div
+          class="relative z-10 flex flex-col justify-center items-center w-full bg-indigo-950 text-white p-6 shadow-xl/60">
+          <div class="flex items-center justify-center text-center m-3">
+            <h2
+              class="text-6xl font-extrabold mx-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-500 drop-shadow-[0_0_10px_purple]">
+              X
+            </h2>
+            <h2 class="font-bold text-3xl text-slate-300">TAKES THE ROUND</h2>
+          </div>
+          <div class="flex items-center justify-center m-5 gap-5">
+            <button
+              id="quitX"
+              class="w-20 h-10 bg-slate-300 rounded-sm text-slate-800 font-bold text-xl hover:bg-slate-500">
+              QUIT
+            </button>
+            <button
+              id="nextX"
+              class="w-40 h-10 bg-violet-500 rounded-sm text-slate-800 font-bold text-xl hover:bg-violet-700">
+              NEXT ROUND
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- O TAKES THE ROUND -->
+      <section id="oTakes" class="hidden fixed inset-0 z-50 items-center justify-center">
+        <!-- Fondo oscuro -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <!-- Contenido del modal -->
+        <div
+          class="relative z-10 flex flex-col justify-center items-center w-full bg-cyan-950 text-white p-6 shadow-xl/60">
+          <div class="flex items-center justify-center text-center m-3">
+            <h2
+              class="text-6xl font-extrabold mx-4 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-cyan-600 to-sky-600 drop-shadow-[0_0_8px_teal]">
+              O
+            </h2>
+            <h2 class="font-bold text-3xl text-slate-300">TAKES THE ROUND</h2>
+          </div>
+          <div class="flex items-center justify-center m-5 gap-5">
+            <button
+              id="quitO"
+              class="w-20 h-10 bg-slate-300 rounded-sm text-slate-800 font-bold text-xl hover:bg-slate-500">
+              QUIT
+            </button>
+            <button
+              id="nextO"
+              class="w-40 h-10 bg-cyan-500 rounded-sm text-slate-800 font-bold text-xl hover:bg-cyan-700">
+              NEXT ROUND
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
