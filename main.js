@@ -70,7 +70,6 @@ newGameBot.addEventListener("click", () => {
     return;
   }
 
-  
   isBotGame = true;
   playerIsX = turnX; // Ya fue definido en selectX/selectO
   turnX = true;
@@ -104,7 +103,9 @@ function userMove(e) {
     if (!endGame && contadorDeJugadas === 9) {
       empate();
       contadorDeJugadas = 0;
-      setTimeout(botMove, 500);
+      if (!botX && isBotGame) {
+        setTimeout(botMove, 500);
+      }
       return;
     }
 
@@ -169,7 +170,6 @@ function empate() {
   restartGame();
   winnsTies = winnsTies + 1;
   ties.innerHTML = winnsTies;
-
 }
 
 function showWinner() {
@@ -257,7 +257,7 @@ nextX.addEventListener("click", () => {
   xTakes.classList.add("hidden");
   endGame = false;
   contadorDeJugadas = 0;
-  if ((!botX) && (isBotGame)) {
+  if (!botX && isBotGame) {
     setTimeout(botMove, 500);
   }
 });
@@ -292,7 +292,7 @@ nextO.addEventListener("click", () => {
   oTakes.classList.add("hidden");
   endGame = false;
   contadorDeJugadas = 0;
-  if ((botX) && (isBotGame)) {
+  if (botX && isBotGame) {
     setTimeout(botMove, 500);
   }
 });
