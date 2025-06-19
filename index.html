@@ -53,11 +53,11 @@
         <!-- Botones de seleccion de jusgo -->
         <div class="flex flex-col items-center justify-center">
           <button id="newGameBot"
-            class="w-70 h-15 mt-10 flex flex-col items-center justify-center rounded-xl bg-gradient-to-r from-violet-700 via-purple-700 to-fuchsia-700 hover:text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 focus:outline-none font-sans font-bold text-slate-300 z-10">
-            New Game (vs bot)
+            class="w-70 h-15 mt-10 flex flex-col items-center justify-center rounded-xl  text-xl font-sans font-extrabold bg-gradient-to-r from-violet-700 via-purple-700 to-fuchsia-700 hover:text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 focus:outline-none text-slate-300 z-10">
+            New Game <span class="text-xs">(vs bot)</span>
           </button>
           <button id="twoPlayerGame"
-            class="w-70 h-15 mt-5 flex flex-col items-center justify-center rounded-xl bg-gradient-to-r from-cyan-700 via-sky-700 to-blue-700 hover:text-white shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 focus:outline-none font-sans font-bold text-slate-300 z-10">
+            class="w-70 h-15 mt-5 flex flex-col items-center justify-center rounded-xl text-xl font-sans font-extrabold bg-gradient-to-r from-cyan-700 via-sky-700 to-blue-700 hover:text-white shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 focus:outline-none text-slate-300 z-10">
             2 Player Game
           </button>
         </div>
@@ -65,7 +65,7 @@
       <!-- GAME -->
       <section id="game" class="hidden w-full h-full flex-col items-center justify-center">
         <!-- Head -->
-        <div class="w-100 flex items-center justify-between z-10">
+        <div class="w-90 md:w-120 flex items-center justify-between z-10">
           <h2
             class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-emerald-500 from-purple-500 drop-shadow-[0_0_10px_indigo]">
             X O
@@ -102,7 +102,7 @@
         <!-- Table -->
         <div
           id="cellsContainer"
-          class="w-100 h-100 grid grid-cols-3 grid-rows-3 place-items-center place-content-center m-3 mt-5 p-2 border rounded-md border-slate-800 bg-slate-800 shadow-xl/50 z-10">
+          class="w-90 h-90 md:w-120 md:h-120 grid grid-cols-3 grid-rows-3 place-items-center place-content-center m-3 mt-5 p-2 border rounded-md border-slate-800 bg-slate-800 shadow-xl/50 z-10">
           <div
             data-celdas="0"
             class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
@@ -140,19 +140,19 @@
             class="cell w-[85%] h-[85%] flex items-center justify-center bg-slate-700 inset-shadow-sm inset-shadow-slate-800 rounded-md"></div>
         </div>
         <!-- Takes -->
-        <div class="w-100 flex items-center justify-between text-slate-800">
+        <div class="w-90 md:w-120 flex items-center justify-between text-slate-800">
           <div
-            class="w-30 h-15 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-600 font-sans z-10">
+            class="w-25 h-15 md:w-35 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-600 font-sans z-10">
             <h5 class="mb-[-5px] text-slate-700">Player X</h5>
             <h5 id="playerX" class="font-extrabold text-2xl">0</h5>
           </div>
           <div
-            class="w-30 h-15 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-slate-400 font-sans z-10">
+            class="w-25 h-15 md:w-35 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-slate-400 font-sans z-10">
             <h5 class="mb-[-5px] text-slate-700">TIES</h5>
             <h5 id="ties" class="font-extrabold text-2xl">0</h5>
           </div>
           <div
-            class="w-30 h-15 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 font-sans z-10">
+            class="w-25 h-15 md:w-35 mt-5 flex flex-col items-center justify-center font-medium rounded-md bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 font-sans z-10">
             <h5 class="mb-[-5px] text-slate-700">Player O</h5>
             <h5 id="playerO" class="font-extrabold text-2xl">0</h5>
           </div>

@@ -244,6 +244,12 @@ quitX.addEventListener("click", () => {
   playerIsX = true;
   playerSelected = false;
   selectPlayerContainer.classList.remove("border", "border-green-600");
+  winnsX = 0;
+  playerX.innerHTML = "0";
+  winnsO = 0;
+  playerO.innerHTML = "0";
+  winnsTies = 0;
+  ties.innerHTML = "0";
 });
 nextX.addEventListener("click", () => {
   restartGame();
@@ -251,7 +257,7 @@ nextX.addEventListener("click", () => {
   xTakes.classList.add("hidden");
   endGame = false;
   contadorDeJugadas = 0;
-  if (!botX) {
+  if ((!botX) && (isBotGame)) {
     setTimeout(botMove, 500);
   }
 });
@@ -273,6 +279,12 @@ quitO.addEventListener("click", () => {
   playerIsX = true;
   playerSelected = false;
   selectPlayerContainer.classList.remove("border", "border-green-600");
+  winnsX = 0;
+  playerX.innerHTML = "0";
+  winnsO = 0;
+  playerO.innerHTML = "0";
+  winnsTies = 0;
+  ties.innerHTML = "0";
 });
 nextO.addEventListener("click", () => {
   restartGame();
@@ -280,7 +292,7 @@ nextO.addEventListener("click", () => {
   oTakes.classList.add("hidden");
   endGame = false;
   contadorDeJugadas = 0;
-  if (botX) {
+  if ((botX) && (isBotGame)) {
     setTimeout(botMove, 500);
   }
 });

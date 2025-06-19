@@ -19,11 +19,4 @@ function checkSign(arrayId ) {
 
 
 
-
-
-
-
-
-
-
 export {clearCells, renderCells};
